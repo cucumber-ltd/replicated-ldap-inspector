@@ -1,0 +1,14 @@
+{
+  "name": "replicated-ldap-inspector",
+  "version": "1.0.0",
+  "description": "Inspect response from Replicated Identity API",
+  "author": "Cucumber Ltd <devs@cucumber.io>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "node-fetch": "^1.7.3"
+  }
+}
