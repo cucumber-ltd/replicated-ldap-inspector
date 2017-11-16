@@ -1,4 +1,4 @@
-FROM docker:9.2.0-alpine
+FROM node:9.2.0-alpine
 
 # Create app directory
 WORKDIR /usr/src/app
