@@ -6,6 +6,8 @@ const app = express()
 const port = parseInt(process.env.PORT || "8080")
 const baseUrl = process.env.REPLICATED_INTEGRATIONAPI || `http://localhost:${port}`
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
+
 app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
