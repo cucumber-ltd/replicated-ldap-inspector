@@ -232,13 +232,12 @@ config:
 components:
 - name: WebApp
   containers:
-  - source: replicated
-    image_name: replicated-ldap-inspector
+  - source: public
+    image_name: stevetooke/replicated-ldap-inspector
     version: 1
     ports:
     - private_port: "8080"
       public_port: "18080"
-      interface: docker0
       port_type: tcp
 
 #
