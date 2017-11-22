@@ -1,11 +1,11 @@
 ## Build
 
-    export version=10
-    docker build -t registry.replicated.com/cucumberpro/replicated-ldap-inspector:${version} .
+    export version=15
+    docker build -t registry.replicated.com/cucumberpro/cucumber-ldap-inspector:${version} .
 
 ## Publish to replicated
 
-    docker push registry.replicated.com/cucumberpro/replicated-ldap-inspector:${version}
+    docker push registry.replicated.com/cucumberpro/cucumber-ldap-inspector:${version}
 
 ## Debugging the Identity API
 

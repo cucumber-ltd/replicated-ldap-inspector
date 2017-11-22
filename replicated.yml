@@ -232,9 +232,9 @@ config:
 components:
 - name: WebApp
   containers:
-  - source: public
-    image_name: aslakhellesoy/replicated-ldap-inspector
-    version: 6
+  - source: replicated
+    image_name: cucumber-ldap-inspector
+    version: 11
     ports:
     - private_port: "8080"
       public_port: "18080"
