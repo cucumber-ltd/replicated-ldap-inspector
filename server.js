@@ -14,11 +14,25 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.post('/login', (req, res) => {
   authenticate(req.body)
-    .then(apiResponse => res.send(JSON.stringify(apiResponse, null, 2)))
-    .catch(err => res.status(500).send(err.message))
+    .then(apiResponse => res.send(`<!DOCTYPE html>
+<html>
+<body>
+  <h1>Success</h1>
+  <pre>${escapeHtml(JSON.stringify(apiResponse, null, 2))}</pre>
+</body>
+</html>`))
+    .catch(err => res.send(`<!DOCTYPE html>
+<html>
+<body>
+  <h1>Error</h1>
+  <pre>${escapeHtml(err.message)}</pre>
+</body>
+</html>`))
 })
 
-app.post('/identity/v1/login', (req, res) => res.json({ message: `You (${req.body.username}) need to define the REPLICATED_INTEGRATIONAPI`}))
+app.post('/identity/v1/login', (req, res) => res.status(500).send(`Didn't try to log in ${req.body.username} in LDAP.
+REPLICATED_INTEGRATIONAPI is not configured
+`))
 
 async function authenticate({ username, password }) {
   const options = {
@@ -35,7 +49,16 @@ async function authenticate({ username, password }) {
   if (res.status === 401) {
     throw new Error('Authentication failed')
   }
-  throw new Error(`POST ${url} - ${res.status} ${await res.text()}`)
+  throw new Error(`POST ${url} - ${res.status}\n${await res.text()}`)
 }
 
 app.listen(port)
+
+function escapeHtml(unsafe) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;")
+ }
