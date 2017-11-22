@@ -233,8 +233,8 @@ components:
 - name: WebApp
   containers:
   - source: replicated
-    image_name: cucumber-ldap-inspector
-    version: 11
+    image_name: replicated-ldap-inspector
+    version: 21
     ports:
     - private_port: "8080"
       public_port: "18080"
